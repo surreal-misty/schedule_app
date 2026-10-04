@@ -1,0 +1,37 @@
+<h1>スケジュール一覧</h1>
+
+<p>今日の日付：<%= Date.current.strftime("%Y/%m/%d") %></p>
+
+<p>スケジュール件数：<%= @posts.count %>件</p>
+
+<p>
+  <%= link_to "新規登録", new_post_path %>
+</p>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>タイトル</th>
+    <th>開始日</th>
+    <th>終了日</th>
+    <th>終日</th>
+    <th>更新日時</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.id %></td>
+      <td><%= post.title %></td>
+      <td><%= post.start_date.strftime("%Y/%m/%d") %></td>
+      <td><%= post.end_date.strftime("%Y/%m/%d") %></td>
+      <td><%= "○" if post.all_day %></td>
+      <td><%= post.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+      <td><%= link_to "詳細", post_path(post) %></td>
+      <td><%= link_to "編集", edit_post_path(post) %></td>
+      <td><%= link_to "削除", post_path(post), data: { turbo_method: :delete, turbo_confirm: "予定を削除しますか？" } %></td>
+    </tr>
+  <% end %>
+</table>
