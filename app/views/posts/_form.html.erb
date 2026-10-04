@@ -1,0 +1,30 @@
+<%= form_with model: @post do |form| %>
+  <div>
+    <%= form.label :title, "タイトル" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, "開始日" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, "終了日" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.label :all_day, "終日" %>
+    <%= form.check_box :all_day %>
+  </div>
+
+  <div>
+    <%= form.label :body, "内容" %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.submit "保存" %>
+  </div>
+<% end %>
